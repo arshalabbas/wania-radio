@@ -1,0 +1,24 @@
+{
+  "name": "wania-radio",
+  "version": "1.0.0",
+  "description": "A Discord Radio Bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arshalabbas/wania-radio.git"
+  },
+  "author": "arshalabbas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arshalabbas/wania-radio/issues"
+  },
+  "homepage": "https://github.com/arshalabbas/wania-radio#readme",
+  "dependencies": {
+    "@discordjs/opus": "^0.3.3",
+    "discord.js": "^12.5.1",
+    "ffmpeg-static": "^4.2.7"
+  }
+}
