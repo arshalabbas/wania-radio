@@ -6,17 +6,21 @@ module.exports = {
     description: "Stream radio in voice channel.\nUsage:\n`;p` - for default radio channels.\n`;p <stream URL>` - for stream custom radio.",
     aliases: ["p", "stream"],
     async execute(message, args) {
-        const channel = message.member.voice.channel;
-        if (channel == null) return message.reply("You need to join voice channel");
+        const { channel } = message.member.voice;
+        const serverRadio = message.client.radio.get(message.guild.id);
+
+        if (!channel) return message.reply("You need to join voice channel");
+        if (serverRadio && channel !== message.guild.me.voice.channel) return message.reply(`You must be in the same channel as ${message.client.user}`).catch(console.error);
         const permissions = channel.permissionsFor(message.client.user);
         if (!channel) return message.reply("You need to join voice channel.");
         if (!permissions.has("CONNECT"))
             return message.reply("Cannot connect to voice channel, missing permissions");
         if (!permissions.has("SPEAK"))
             return message.reply("I cannot speak in this voice channel, make sure I have the proper permissions!");
-
+        
         const radioConstruct = {
             radio: [],
+            channel,
             textChannel: message.channel,
             connection: null,
             volume: 100,
